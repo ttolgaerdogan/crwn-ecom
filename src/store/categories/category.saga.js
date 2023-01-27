@@ -7,7 +7,7 @@ import { CATEGORIES_ACTION_TYPES } from "./category.types";
 
 export function* fetchCategoriesAsync(){
     try {
-        const categoriesArray = yield call(getCategoriesAndDocuments('categories'));
+        const categoriesArray = yield call(getCategoriesAndDocuments, ('categories'));
         yield put(fetchCategoriesSuccess(categoriesArray))
       } catch (error) {
         yield put(fetchCategoriesFailure(error))
@@ -19,5 +19,5 @@ export function* onFetchCategories(){
 }
   
 export function* categoriesSaga(){
-    yield all([])
+    yield all([call(onFetchCategories)])
 }
